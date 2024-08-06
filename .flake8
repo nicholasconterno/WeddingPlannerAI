@@ -1,0 +1,5 @@
+# .flake8
+[flake8]
+exclude = aiagentwedding, .git, __pycache__
+max-line-length = 127
+ignore = E122

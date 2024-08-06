@@ -36,7 +36,7 @@ def converse_with_vendor(
         emails = receive_emails(sender_email, sender_password)
         for email in emails:
             email["from"] = email["from"][
-                email["from"].find("<") + 1: email["from"].find(">")
+                email["from"].find("<") + 1 : email["from"].find(">")
             ]
             if email["from"] == recipient_email and email[
                 "date"

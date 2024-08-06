@@ -72,7 +72,7 @@ def receive_emails(email_user, email_app_password, max_emails=10):
         return emails
     except imaplib.IMAP4.error:
         print(
-        "Failed to authenticate with the IMAP server. Check your email and app password."
+            "Failed to authenticate with the IMAP server. Check your email and app password."
         )
     except Exception as e:
         print(f"An error occurred: {e}")

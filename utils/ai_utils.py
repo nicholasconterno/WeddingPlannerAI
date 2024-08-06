@@ -107,7 +107,8 @@ def get_next_step(summary):
             },
             {
                 "role": "user",
-                "content": summary + ":[ based on the summary before] respond with the next vendor"
+                "content": summary
+                + ":[ based on the summary before] respond with the next vendor"
                 " type for the bride to contact for a quote (e.g. 'You should"
                 " now book the florist/photographer.') (do not say Based on the information provided)",
             },

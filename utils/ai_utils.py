@@ -3,7 +3,8 @@ from openai import OpenAI
 
 def create_openai_client(api_key):
     return OpenAI(
-        base_url="http://host.docker.internal:8080/v1", api_key=api_key  # Adjust as needed
+        base_url="http://host.docker.internal:8080/v1",
+        api_key=api_key,  # Adjust as needed
     )
 
 

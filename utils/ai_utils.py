@@ -3,7 +3,7 @@ from openai import OpenAI
 
 def create_openai_client(api_key):
     return OpenAI(
-        base_url="http://127.0.0.1:8080/v1", api_key=api_key  # Adjust as needed
+        base_url="http://host.docker.internal:8080/v1", api_key=api_key  # Adjust as needed
     )
 
 
@@ -69,7 +69,7 @@ def summarize_information():
         info = f.read()
 
     client = OpenAI(
-        base_url="http://127.0.0.1:8080/v1",  # "http://<Your api-server IP>:port"
+        base_url="http://host.docker.internal:8080/v1",  # "http://<Your api-server IP>:port"
         api_key="sk-no-key-required",
     )
     completion = client.chat.completions.create(
@@ -91,7 +91,7 @@ def summarize_information():
 # get next step for the bride based on the summary
 def get_next_step(summary):
     client = OpenAI(
-        base_url="http://127.0.0.1:8080/v1",  # "http://<Your api-server IP>:port"
+        base_url="http://host.docker.internal:8080/v1",  # "http://<Your api-server IP>:port"
         api_key="sk-no-key-required",
     )
     completion = client.chat.completions.create(

@@ -1,4 +1,9 @@
 import unittest
+import sys
+import os
+
+# Add the project directory to the Python path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from main import converse_with_vendor, get_summary, get_next_step_for_bride
 
 

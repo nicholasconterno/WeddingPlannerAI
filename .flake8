@@ -1,5 +1,5 @@
 # .flake8
 [flake8]
-exclude = aiagentwedding, .git, __pycache__, vvv
+exclude = aiagentwedding, .git, __pycache__, vvv, venv
 max-line-length = 127
 ignore = E122, E203, W503

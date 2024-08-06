@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Planner AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Wedding Planner AI</h1>
+            <p>Your personal wedding planning assistant</p>
+        </div>
+        <form id="query-form">
+            <input type="email" id="vendor_email" name="vendor_email" placeholder="Enter vendor email address..." required>
+            <textarea id="input_text" name="input_text" placeholder="Enter your question here..." required></textarea>
+            <button type="submit" class="primary-button">Submit</button>
+        </form>
+        <div class="buttons">
+            <button id="summarize-button" class="secondary-button">Summarize Vendor Quotes</button>
+            <button id="next-step-button" class="secondary-button">Next Steps</button>
+        </div>
+        <div id="response" class="response-container">
+            <h2>Response:</h2>
+            <p id="output"></p>
+        </div>
+        <div id="loading" class="hidden">
+            <!-- <div class="spinner"></div> -->
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#query-form').on('submit', function(event) {
+                event.preventDefault();
+                var vendor_email = $('#vendor_email').val();
+                var input_text = $('#input_text').val();
+                $('#loading').show(); // Show the loader
+                $('#output').text(''); // Clear previous output
+                $.ajax({
+                    type: 'POST',
+                    url: '/query',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ vendor_email: vendor_email, input_text: input_text }),
+                    success: function(data) {
+                        $('#output').text(data.output);
+                    },
+                    error: function() {
+                        $('#output').text('An error occurred.');
+                    },
+                    complete: function() {
+                        $('#loading').hide(); // Hide the loader
+                    }
+                });
+            });
+
+            $('#summarize-button').on('click', function() {
+                $('#loading').show(); // Show the loader
+                $('#output').text(''); // Clear previous output
+                $.ajax({
+                    type: 'GET',
+                    url: '/summary',
+                    success: function(data) {
+                        $('#output').text(data.summary);
+                    },
+                    error: function() {
+                        $('#output').text('An error occurred.');
+                    },
+                    complete: function() {
+                        $('#loading').hide(); // Hide the loader
+                    }
+                });
+            });
+
+            $('#next-step-button').on('click', function() {
+                $('#loading').show(); // Show the loader
+                $('#output').text(''); // Clear previous output
+                $.ajax({
+                    type: 'GET',
+                    url: '/next_step',
+                    success: function(data) {
+                        $('#output').text(data.next_step);
+                    },
+                    error: function() {
+                        $('#output').text('An error occurred.');
+                    },
+                    complete: function() {
+                        $('#loading').hide(); // Hide the loader
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -29,6 +29,11 @@ def generate_email_content(client, user_input):
         temp = temp.replace(char, "")
     # replace '[Vendor's Name]' with the word 'Colleague'
     temp = temp.replace("[Vendor's Name]", "Colleague")
+    temp = temp.replace("[Vendor Name]", "Colleague")
+    # remove any line starting with Subject: 
+    for line in temp.split("\n"):
+        if line.startswith("Subject: "):
+            temp = temp.replace(line, "")
     return temp
 
 

@@ -100,7 +100,7 @@ def summarize_information():
                 " NEVER show that you are an AI, and never add information not stated in the vendor emails; "
                 "do not put [missing info]. Respond naturally and provide complete information wherever possible.",
             },
-            {"role": "user", "content": info},
+            {"role": "user", "content": "summarize this info in list format: " + info},
         ],
     )
     temp = completion.choices[0].message.content

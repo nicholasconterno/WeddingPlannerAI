@@ -68,6 +68,10 @@ Make sure your SLM is running locally before attempting to run this application.
 
 (I will note that to bypass annoying email configuration for the user, I have included the authentication for this AIs personal email address, but please avoid abusing this as it is connected to a real gmail)
 
+Note that the development of this application was done with mistral-7b-instruct as a llamafile which can be downloaded here:
+https://github.com/Mozilla-Ocho/llamafile?tab=readme-ov-file
+
+
 Because this is setup with docker, that will be the easiest way for you to run this application. 
 
 Make sure you have a recent release downloaded on your local and then pull the most recent version of this application
@@ -156,8 +160,13 @@ Builds the docker image and pushes the container to dockerhub.
 
 ## Model Selection 
 
-******
+There are a few reasons I chose Mistral-7b-instruct over other SLMs for this project. One large one was simply hardware limitations. Any models of a reasonably larger size (with greater performance potential) would take enormous lengths of time to run or not fit on my computer. Due to speed considerations I needed to go with relatively small models that still had high performance. Compared to a model like Llama-3 it saves a lot of space and adds performance in terms of speed of response. 
 
+This also is a more equitable setup, as it allows more people access to the machine who don't have access to GPUs or perhaps education to access cloud compute. If it was not a local setup, likely a larger model could have been more performant. 
+
+Mistral is instruction finetuned which is very good for my task as I need to have it respond in very specific ways for my AI Agent to work properly. I did experiment with Phi-mini and TinyLlama but they performed much worse with my AI agent setup throughout development, and eventually I chose to optimize for the one performing the best (Mistral-7B-Instruct)
+
+It is certainly not the model that would have the highest evaluation metrics, but it did give the combination of size, speed, context length, and accuracy that I felt made the most sense for this particular local AI Agent use case.
 
 ## AI Agent Discussion
 

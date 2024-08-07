@@ -19,5 +19,7 @@ ENV FLASK_APP=flask_app.py
 ENV FLASK_ENV=production
 ENV FLASK_DEBUG=0
 
+ENV PYTHONUNBUFFERED=1
+
 # Run flask_app.py when the container launches
 CMD ["python", "flask_app.py"]

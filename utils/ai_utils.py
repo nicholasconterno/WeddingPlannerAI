@@ -27,6 +27,8 @@ def generate_email_content(client, user_input):
     # remove quotation marks and '</s>' if present
     for char in ["</s>"]:
         temp = temp.replace(char, "")
+    # replace '[Vendor's Name]' with the word 'Colleague'
+    temp = temp.replace("[Vendor's Name]", "Colleague")
     return temp
 
 

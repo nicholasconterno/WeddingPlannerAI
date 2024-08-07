@@ -9,6 +9,8 @@ from email.header import decode_header
 
 def send_email(sender_email, sender_password, recipient_email, subject, body):
     try:
+        subject = ' '.join(subject.split())
+
         msg = MIMEMultipart()
         msg["From"] = sender_email
         msg["To"] = recipient_email

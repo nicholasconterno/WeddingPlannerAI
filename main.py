@@ -102,7 +102,6 @@ def converse_with_vendor(
                     print("Follow-up email sent.")
                     time.sleep(10)
 
-    
     response = generate_user_content(
         client,
         f"""based upon this reply from the vendor: {info}: give the bride the requested information.

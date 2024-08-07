@@ -31,7 +31,7 @@ def generate_subject_line(client, user_input):
     # remove quotation marks and '</s>' if present
     for char in ['"', "'", "</s>"]:
         temp = temp.replace(char, "")
-    temp = ' '.join(temp.split())
+    temp = " ".join(temp.split())
     return temp
 
 
@@ -76,13 +76,21 @@ def converse_with_vendor(
                     break
 
                 if info is None:
-                    count+=1
+                    count += 1
                     if count == 3:
-                        return "Information about the vendor request: " + user_request + " was not found."
-                    
+                        return (
+                            "Information about the vendor request: "
+                            + user_request
+                            + " was not found."
+                        )
+
                     follow_up_body = generate_email_content(
                         client,
-                        "Generate an email in response to this vendor email:" + email["body"] + " to request the information from this request: " + user_request + " REMEMBER YOU ARE THE WEDDING PLANNER, NOT THE VENDOR.",
+                        "Generate an email in response to this vendor email:"
+                        + email["body"]
+                        + " to request the information from this request: "
+                        + user_request
+                        + " REMEMBER YOU ARE THE WEDDING PLANNER, NOT THE VENDOR.",
                     )
                     last_sent_date = send_email(
                         sender_email,

@@ -1,9 +1,16 @@
 def store_information(info):
+    """
+    Store information in a text file
+    """
     with open("information.txt", "a") as f:
         f.write(info + "\n")
 
 
 def get_original_message(email_content):
+    """
+    Extract the original message from an email
+    by removing any forwarded messages
+    """
     # Split the content by newlines
     lines = email_content.split("\n")
 

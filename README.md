@@ -144,3 +144,17 @@ If interested, all tests are in the tests folder but again they are testing basi
 
 
 
+## Github Actions for CI/CD
+
+Installs dependencies for project and for CICD using pip
+Checks code formatting with Black
+Checks code linting with flake8
+Runs unittests
+Uses Hadolint to lint the dockerfile
+Builds the docker image and pushes the container to dockerhub. 
+
+
+## Model Selection 
+
+******
+

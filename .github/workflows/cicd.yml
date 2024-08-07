@@ -54,7 +54,7 @@ jobs:
 
     - name: Lint Dockerfile with hadolint
       run: |
-        /usr/local/bin/hadolint Dockerfile
+        /usr/local/bin/hadolint dockerfile
   
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1

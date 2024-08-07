@@ -158,3 +158,9 @@ Builds the docker image and pushes the container to dockerhub.
 
 ******
 
+
+## AI Agent Discussion
+
+As this was my first attempt at creating an AI Agent I think the potential is pretty great, and it also shows the importance of effective evaluation (normal tests may be different and require some threshold similar to latency testing). In my case, I think it is clear that AI Agents are pretty feasible but a lot of times they require pretty complex trees of thought where lots of different scenarios need to be considered. When using the AI to make a decision, the AI really needs to be able to perform adequately, so I think using a SOTA model is always best in that case. I am still glad I spent time understanding a bit how an LLM might control code on its own through some prompt engineering. Likely using the summary embeddings you could also make some kind of classification using an LLM that may be more effective (especially if you trained it for that task). I think my method through prompt engineering can be effective, but for it to be put into production it would need cloud capabilities, better performance, and especially a better context window ( i know the window is claimed to be large but its performance on large windows is different)
+
+

@@ -133,6 +133,124 @@ This explains the basic functionality of the application. Feel free to play arou
 
 ## Performance/Evaluation
 
+For evaluation, I have human-evaluated the many stages of my LLM calls on certain criteria. I haven't listed the exact prompts here, but they are similar to the example shown above. I will go through the results from that example in my ratings and then I will show the overall results and discuss some of my findings more generally.
+
+So for the first email there are two evaluations, evaluation of the subject line (which the LLM generates) and of the email generated. 
+
+Let's evaluate the first generated email first, based upon three criterion.
+
+Relevance: 10/10  
+In this case the LLM pretty much performs exactly how I would hope it would, asking for the requested information.
+
+Clarity: 8/10  
+I do think that the information is generally clear, however the email is not super succinct, and they also ask for a variety of different outcomes. Likely this is ok, but I think something more succinct would be better.
+
+Hallucination: 10/10  
+In this case no hallucinations occur, typically in my experience this happens when the model just makes something up. As you will see in the scores the model does not always perform to this standard.
+
+Humanness: 9/10  
+I am rating this on how well the model's email sounds like an email an actual human wedding planner would write. It does sound a little bit overprofessional to me, but in general it is quite good.
+
+Overall Score: 37/40  
+
+Now let's rate the subject line. I will be using a simple 'clarity' demarcation here simply because it is the essence of a good subject line. I also will use a hallucination
+
+Clarity: 7/10  
+Clarity is good although the model chooses to say 'your' wedding which doesn't make sense here.
+
+Hallucination: 5/10  
+This is not terrible, but again the use of the word 'your' is obectively not correct.
+
+Overall Score: 12/20  
+
+We also can rate the use of our AI Agent's decision that the information is present. This is a binary system as it is either correct or incorrect. 
+
+Overall Score: 1/1
+
+Now let's rate the response to the user summarizing the information from the vendor's email
+
+Concision: 9/10  
+A listed format would be perfect here in this case but all the information is here.
+
+Hallucination: 10/10  
+No incorrect information was stated.
+
+Clarity: 10/10
+Ths information is stated very simply and correctly.
+
+Overall Score: 29/30
+
+We can also test the summarization feature in this case, on the same criteria.
+
+Concision: 9/10  
+There is not a ton of information, I do think it could be presented slightly better though.
+
+Hallucination: 9/10
+The asterisks are a bit odd, no incorrect information but I do think something strange is going on.
+
+Clarity: 10/10
+
+all the information is stated quite clearly here.
+
+Overall Score: 28/30
+
+We then, finally, have the next steps stage of the pipeline. Again rated on the same 3 criteria.
+
+Concision: 10/10
+I think this response is quite clear and concice
+
+Hallucination: 4/10
+It states information about a website and a package that it has no knowledge of, this is a clear hallucination
+
+Clarity; 10/10
+Very clear response in my opinion
+
+Overall Score: 24/30
+
+
+I went through 10 examples for all of these and tallied up the final scores for all of them. 
+
+#### Subject Line Evaluation  
+Clarity: 8.7/10  
+Hallucination: 7.4/10  
+#### First Email Evaluation  
+Relevance: 9.4/10  
+Clarity: 8.3/10  
+Hallucination: 8.5/10  
+Humanness: 9.0/10  
+
+#### Second Email Evaluation
+(note this was added as I noticed emails became worse as more and more context was added)
+Relevance: 6.4/10  
+Clarity: 8.5/10  
+Hallucination: 6.0/10  
+Humanness: 9.1/10  
+
+
+#### Information Presence Detection  (20 samples)
+Correctness: 0.85/1
+
+#### User Summary Response
+Concision: 8.5/10  
+Hallucination: 7.9/10  
+Clarity: 9.4/10
+#### Summary Feature
+Concision: 8.5/10  
+Hallucination: 8.5/10  
+Clarity: 9.4/10
+#### Next Steps Feature
+Concision: 9.4/10  
+Hallucination: 6.7/10  
+Clarity: 9.4/10
+
+As you can see the model performs pretty well, but it certainly depends on the circumstance. Although I did not explicitly evluate this, I notice that every stage of the pipeline performs worse if inputs are longer, especially those being the vendor email responses. It seems to struggle to actually understand a very large amount of context, especially if the answer is in one small part of them. A SOTA model likely would allow this model to function much better, and most importantly, hallucinate less.
+
+
+As for performance, running on my Mac M1 the time from the submission of a user request to an email being sent off is around 22.4 seconds. All other calls take less time than this. I think for an SLM this is pretty reasonable performance especially when considering the real life use case where most of the waiting time would be waiting on a human vendor to actually respond to an email. The model does take longer for longer inputs and/or long outputs as is expected. 
+
+
+
+
 
 ## Unit Tests
 

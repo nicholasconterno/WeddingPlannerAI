@@ -4,6 +4,8 @@
 
 ## Video Demo
 
+https://www.youtube.com/watch?v=-ELPbO9MfS0
+
 
 ## Project Purpose
 
@@ -244,7 +246,7 @@ Hallucination: 6.7/10
 Clarity: 9.4/10
 
 As you can see the model performs pretty well, but it certainly depends on the circumstance. Although I did not explicitly evluate this, I notice that every stage of the pipeline performs worse if inputs are longer, especially those being the vendor email responses. It seems to struggle to actually understand a very large amount of context, especially if the answer is in one small part of them. A SOTA model likely would allow this model to function much better, and most importantly, hallucinate less.
-
+ 
 
 As for performance, running on my Mac M1 the time from the submission of a user request to an email being sent off is around 22.4 seconds. All other calls take less time than this. I think for an SLM this is pretty reasonable performance especially when considering the real life use case where most of the waiting time would be waiting on a human vendor to actually respond to an email. The model does take longer for longer inputs and/or long outputs as is expected. 
 

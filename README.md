@@ -1,6 +1,6 @@
 # WeddingPlannerAI
 
-[![CI/CD Pipeline](https://github.com/nicholasconterno/WeddingPlannerAI/actions/workflows/cicd.yml/badge.svg)](https://github.com/nicholasconterno/WeddingPlannerAI/actions/workflows/cicd.yml)
+[![CI/CD Pipeline](https://github.com/nicholasconterno/WeddingPlannerAI/actions/workflows/cicd.yml/badge.svg?branch=main)](https://github.com/nicholasconterno/WeddingPlannerAI/actions/workflows/cicd.yml)
 
 ## Video Demo
 

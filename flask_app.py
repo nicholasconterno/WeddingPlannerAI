@@ -13,13 +13,14 @@ def home():
 def query():
     data = request.get_json()
     user_input = data.get("input_text")
-
+    # get venfor email from the form
+    vendor_email = data.get("vendor_email")
     response = converse_with_vendor(
         "sk-no-key-required",
         user_input,
         "wendyplanterweddings@gmail.com",
         "nqel uytt fzxn iqbr",
-        "abneyjohnson0@gmail.com",
+        vendor_email,
     )
     return jsonify({"output": response})
 

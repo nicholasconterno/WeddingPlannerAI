@@ -22,7 +22,12 @@ def generate_email_content(client, user_input):
             {"role": "user", "content": user_input},
         ],
     )
-    return completion.choices[0].message.content
+    temp = completion.choices[0].message.content
+
+    # remove quotation marks and '</s>' if present
+    for char in ["</s>"]:
+        temp = temp.replace(char, "")
+    return temp
 
 
 def generate_user_content(client, user_input):
@@ -39,7 +44,12 @@ def generate_user_content(client, user_input):
             {"role": "user", "content": user_input},
         ],
     )
-    return completion.choices[0].message.content
+    temp = completion.choices[0].message.content
+
+    # remove quotation marks and '</s>' if present
+    for char in ["</s>"]:
+        temp = temp.replace(char, "")
+    return temp
 
 
 def analyze_email_for_information(client, user_request, email_body):
@@ -61,7 +71,12 @@ def analyze_email_for_information(client, user_request, email_body):
         max_tokens=1,
         temperature=0,
     )
-    return completion.choices[0].message.content.strip().lower() == "yes"
+    temp = completion.choices[0].message.content.strip().lower()
+    # remove '</s>' if present
+    for char in ["</s>"]:
+        temp = temp.replace(char, "")
+
+    return temp == "yes"
 
 
 # function to read information.txt and summarize the information using the llm
@@ -69,6 +84,8 @@ def summarize_information():
     with open("information.txt", "r") as f:
         info = f.read()
 
+    if not info:
+        return "No information available."
     client = OpenAI(
         base_url="http://host.docker.internal:8080/v1",  # "http://<Your api-server IP>:port"
         api_key="sk-no-key-required",
@@ -86,7 +103,12 @@ def summarize_information():
             {"role": "user", "content": info},
         ],
     )
-    return completion.choices[0].message.content
+    temp = completion.choices[0].message.content
+
+    # remove quotation marks and '</s>' if present
+    for char in ["</s>"]:
+        temp = temp.replace(char, "")
+    return temp
 
 
 # get next step for the bride based on the summary
@@ -115,4 +137,9 @@ def get_next_step(summary):
             },
         ],
     )
-    return completion.choices[0].message.content
+    temp = completion.choices[0].message.content
+
+    # remove quotation marks and '</s>' if present
+    for char in ["</s>"]:
+        temp = temp.replace(char, "")
+    return temp

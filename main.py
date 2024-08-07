@@ -12,6 +12,28 @@ from utils.ai_utils import (
 from utils.storage_utils import store_information
 
 
+def generate_subject_line(client, user_input):
+    completion = client.chat.completions.create(
+        model="LLaMA_CPP",
+        messages=[
+            {
+                "role": "system",
+                "content": "You are an AI assistant for wedding planning. Generate a concise and relevant email subject line based on the provided user query.",
+            },
+            {
+                "role": "user",
+                "content": f"Generate a subject line for the following query: {user_input}",
+            },
+        ],
+        temperature=0.5,
+    )
+    temp = completion.choices[0].message.content.strip()
+    # remove quotation marks and '</s>' if present
+    for char in ['"', "'", "</s>"]:
+        temp = temp.replace(char, "")
+    return temp
+
+
 def converse_with_vendor(
     api_key, user_request, sender_email, sender_password, recipient_email
 ):
@@ -22,8 +44,11 @@ def converse_with_vendor(
         f"""write an email to a Vendor based upon this requested information from the
         user: [{user_request}] remember they can contact you at {sender_email}""",
     )
+
+    subject_line = generate_subject_line(client, user_request)
+    # subject_line = "Request for Quote"
     last_sent_date = send_email(
-        sender_email, sender_password, recipient_email, "Request for Quote", email_body
+        sender_email, sender_password, recipient_email, subject_line, email_body
     )
     print("Initial email sent.")
 
